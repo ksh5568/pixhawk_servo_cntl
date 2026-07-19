@@ -1,6 +1,6 @@
 # pixhawk_servo_cntl
 
-ROS 2에서 Pixhawk(PX4)의 서보 출력을 제어하는 Python 패키지입니다.
+ROS 2에서 Pixhawk(PX4)의 서보 출력을 제어하는 C++ 패키지입니다.
 
 ## 코드 아키텍처
 
@@ -27,10 +27,12 @@ servo_bridge_node
 
 주요 파일:
 
-- `servo_control_node.py`: 제어 모드 선택 및 각도 명령 변환
-- `servo_bridge_node.py`: ROS 2 명령을 PX4 서보 메시지로 전달
+- `src/servo_control_node.cpp`: 제어 모드 선택 및 각도 명령 변환
+- `src/servo_bridge_node.cpp`: ROS 2 명령을 PX4 서보 메시지로 전달
+- `CMakeLists.txt`: 두 C++ 노드의 빌드 및 설치 설정
 
 PX4 통신에는 `px4_msgs`와 PX4 uXRCE-DDS Agent가 필요합니다.
+패키지는 C++17과 `ament_cmake`를 사용합니다.
 
 ## Git Clone
 

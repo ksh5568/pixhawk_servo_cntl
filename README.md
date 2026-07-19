@@ -1,6 +1,6 @@
 # pixhawk_servo_cntl
 
-ROS 2에서 Pixhawk(PX4)의 서보 출력을 제어하는 C++ 패키지입니다.
+ROS 2에서 Pixhawk(PX4)의 서보 출력을 제어하는 패키지입니다. 동일한 기능을 C++과 Python 두 가지 구현으로 제공합니다.
 
 ## 코드 아키텍처
 
@@ -29,10 +29,12 @@ servo_bridge_node
 
 - `src/servo_control_node.cpp`: 제어 모드 선택 및 각도 명령 변환
 - `src/servo_bridge_node.cpp`: ROS 2 명령을 PX4 서보 메시지로 전달
-- `CMakeLists.txt`: 두 C++ 노드의 빌드 및 설치 설정
+- `pixhawk_servo_cntl/servo_control_node.py`: Python 제어 노드
+- `pixhawk_servo_cntl/servo_bridge_node.py`: Python PX4 연결 노드
+- `CMakeLists.txt`: C++ 및 Python 노드의 빌드·설치 설정
 
 PX4 통신에는 `px4_msgs`와 PX4 uXRCE-DDS Agent가 필요합니다.
-패키지는 C++17과 `ament_cmake`를 사용합니다.
+패키지는 C++17, Python 3, `ament_cmake`, `ament_cmake_python`을 사용합니다.
 
 ## Git Clone
 
@@ -53,6 +55,10 @@ source install/setup.bash
 
 ## 실행
 
+C++ 또는 Python 중 한 가지 구현을 선택해서 실행합니다. 두 구현은 같은 노드명과 토픽을 사용하므로 동시에 실행하지 마세요.
+
+### C++ 노드
+
 터미널 1에서 PX4와 직접 통신하는 bridge 노드를 실행합니다.
 
 ```bash
@@ -65,10 +71,31 @@ ros2 run pixhawk_servo_cntl servo_bridge_node
 ros2 run pixhawk_servo_cntl servo_control_node
 ```
 
-R2 모드로 바로 시작하려면 다음과 같이 실행합니다.
+### Python 노드
+
+터미널 1:
+
+```bash
+ros2 run pixhawk_servo_cntl servo_bridge_node_py
+```
+
+터미널 2:
+
+```bash
+ros2 run pixhawk_servo_cntl servo_control_node_py
+```
+
+R2 모드로 바로 시작하려면 선택한 구현의 control 노드에 파라미터를 전달합니다.
 
 ```bash
 ros2 run pixhawk_servo_cntl servo_control_node \
+  --ros-args -p control_mode:=R2
+```
+
+Python 구현은 다음과 같습니다.
+
+```bash
+ros2 run pixhawk_servo_cntl servo_control_node_py \
   --ros-args -p control_mode:=R2
 ```
 

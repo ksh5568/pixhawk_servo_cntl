@@ -6,6 +6,7 @@ if(CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
 endif()
 
 find_package(ament_cmake REQUIRED)
+find_package(ament_cmake_python REQUIRED)
 find_package(px4_msgs REQUIRED)
 find_package(rcl_interfaces REQUIRED)
 find_package(rclcpp REQUIRED)
@@ -26,9 +27,17 @@ ament_target_dependencies(servo_control_node rclcpp std_msgs)
 target_compile_features(servo_bridge_node PUBLIC cxx_std_17)
 target_compile_features(servo_control_node PUBLIC cxx_std_17)
 
+ament_python_install_package(${PROJECT_NAME})
+
 install(TARGETS
   servo_bridge_node
   servo_control_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+
+install(PROGRAMS
+  scripts/servo_bridge_node_py
+  scripts/servo_control_node_py
   DESTINATION lib/${PROJECT_NAME}
 )
 

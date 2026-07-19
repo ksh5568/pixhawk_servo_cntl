@@ -3,12 +3,14 @@
 <package format="3">
   <name>pixhawk_servo_cntl</name>
   <version>0.0.0</version>
-  <description>ROS 2 C++ nodes for controlling a PX4 servo.</description>
+  <description>ROS 2 C++ and Python nodes for controlling a PX4 servo.</description>
   <maintainer email="quad@todo.todo">quad</maintainer>
   <license>TODO: License declaration</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
+  <buildtool_depend>ament_cmake_python</buildtool_depend>
 
+  <depend>rclpy</depend>
   <depend>rclcpp</depend>
   <depend>px4_msgs</depend>
   <depend>rcl_interfaces</depend>

@@ -32,6 +32,12 @@ servo_bridge_node
 
 PX4 통신에는 `px4_msgs`와 PX4 uXRCE-DDS Agent가 필요합니다.
 
+## Git Clone
+
+```bash
+cd ~/ros2_ws/src && git clone https://github.com/ksh5568/pixhawk_servo_cntl.git
+```
+
 ## 빌드
 
 ROS 2 워크스페이스의 `src` 아래에 패키지를 배치한 후 워크스페이스 루트에서 실행합니다.

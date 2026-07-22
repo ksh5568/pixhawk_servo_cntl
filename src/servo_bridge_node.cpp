@@ -63,12 +63,12 @@ private:
     return std::clamp(value, -1.0, 1.0);
   }
 
-  uint64_t now_us() const
+  uint64_t now_us()
   {
     return static_cast<uint64_t>(get_clock()->now().nanoseconds() / 1000);
   }
 
-  double now_sec() const
+  double now_sec()
   {
     return static_cast<double>(get_clock()->now().nanoseconds()) / 1.0e9;
   }
@@ -180,12 +180,12 @@ private:
     last_r2_time_ = now_sec();
   }
 
-  bool is_rc_active() const
+  bool is_rc_active()
   {
     return rc_valid_ && (now_sec() - last_rc_time_) <= rc_timeout_;
   }
 
-  bool is_r2_active() const
+  bool is_r2_active()
   {
     return r2_valid_ && (now_sec() - last_r2_time_) <= r2_timeout_;
   }

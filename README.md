@@ -47,11 +47,12 @@ cd ~/ros2_ws/src && git clone https://github.com/ksh5568/pixhawk_servo_cntl.git
 ROS 2 워크스페이스의 `src` 아래에 패키지를 배치한 후 워크스페이스 루트에서 실행합니다.
 
 ```bash
+cd ~/ros2_ws
 colcon build --packages-select pixhawk_servo_cntl
-source install/setup.bash
+source ~/ros2_ws/install/setup.bash
 ```
 
-새 터미널을 열 때마다 `source install/setup.bash`를 다시 실행해야 합니다.
+`src` 폴더가 아니라 워크스페이스 루트(`~/ros2_ws`)에서 빌드해야 합니다. 새 터미널을 열 때마다 `source ~/ros2_ws/install/setup.bash`를 다시 실행하세요.
 
 ## 실행
 
